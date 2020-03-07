@@ -3,3 +3,5 @@ steps:
   args: ['build', '-t', 'gcr.io/sustained-opus-269301/prasadtechnology/cicdgcprun:$SHORT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push','gcr.io/sustained-opus-269301/prasadtechnology/cicdgcprun:$SHORT_SHA']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['run','deploy','cloudbuildyml-service','--region us-central1', 'gcr.io/sustained-opus-269301/prasadtechnology/cicdgcprun:$SHORT_SHA']
